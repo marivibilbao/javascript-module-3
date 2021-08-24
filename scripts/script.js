@@ -47,7 +47,7 @@ function renderContent (episodio) {
             const div5 = document.createElement('div')
             div5.className = 'col-3'
             personajesEpisodios.appendChild(div5)
-            div5.innerHTML = `<div class="card m-3" style="width: 14rem;"><img src="${json.image}" class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+            div5.innerHTML = `<div class="card m-3" style="width: 14rem;"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
         });
     });
 };
@@ -74,7 +74,7 @@ fetch(url)
     for(let i=0;i<count;i++){
         const elementDivContentList = document.createElement('div');
         list.appendChild(elementDivContentList);
-        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
         elementDivContentList.onclick = () => contentEpisode(i+1);
     };
 }).catch(error => console.warn(error));

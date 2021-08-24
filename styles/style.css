@@ -4,3 +4,14 @@
     width: 200px;
     text-align: center;
 }
+
+h1 {
+    font-family: 'Finger Paint', cursive;
+    color: #333;
+    text-shadow: 0.1em 0.1em #4AB7F7
+}
+
+h3 {
+    font-family: 'Finger Paint';
+}
+
