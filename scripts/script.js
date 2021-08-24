@@ -8,7 +8,7 @@ root.className = 'container d-flex';
 
 /* 2. Declaro variable de Sidebar */
 const divSidebar = document.createElement("div");
-divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white""><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
+divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white overflow-scroll" style="height:2500px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
 root.appendChild(divSidebar);
 
 const url = `https://rickandmortyapi.com/api/episode`;
@@ -47,7 +47,7 @@ function renderContent (episodio) {
             const div5 = document.createElement('div')
             div5.className = 'col-3'
             personajesEpisodios.appendChild(div5)
-            div5.innerHTML = `<div class="card m-3" style="width: 14rem;"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+            div5.innerHTML = `<div class="card m-3" style="width: 13rem;"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
         });
     });
 };
