@@ -5,3 +5,7 @@
     text-align: center;
 }
 
+
+.list-content {
+    overflow: scroll; margin-right: 10px,
+}

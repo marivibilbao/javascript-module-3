@@ -8,7 +8,7 @@ root.className = 'container d-flex';
 
 /* 2. Declaro variable de Sidebar */
 const divSidebar = document.createElement("div");
-divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 200px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
+divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white""><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
 root.appendChild(divSidebar);
 
 const url = `https://rickandmortyapi.com/api/episode`;
