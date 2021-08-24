@@ -9,7 +9,7 @@ root.className = 'container d-flex';
 /* 2. Declaro variable de Sidebar */
 const divSidebar = document.createElement("div");
 divSidebar.className = "content-sidebar";
-divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white overflow-scroll" style="height:2000px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
+divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white overflow-auto" style="height:2000px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
 root.appendChild(divSidebar);
 
 const url = `https://rickandmortyapi.com/api/episode`;
@@ -74,7 +74,7 @@ fetch(url)
     for(let i=0;i<count;i++){
         const elementDivContentList = document.createElement('div');
         list.appendChild(elementDivContentList);
-        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action list-group-item-light py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
         elementDivContentList.onclick = () => contentEpisode(i+1);
     };
 }).catch(error => console.warn(error));
