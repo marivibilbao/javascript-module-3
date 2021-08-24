@@ -18,8 +18,16 @@ const divContentCard = document.createElement('div');
 root.appendChild(divContentCard);
 divContentCard.className = 'content-card m-5';
 
+/* Declaro función para que limpie */ 
+function clearContent() {
+    const contenido = document.querySelector('.content-card');
+    contenido.innerHTML = "";
+};
+
+
 /* Función para las tarjetas */
 function renderContent (episodio) {
+    clearContent();
     const contenido = document.querySelector('.content-card');
     const h1 = document.createElement('h1');
     const h3 = document.createElement('h3');
