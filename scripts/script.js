@@ -5,28 +5,41 @@ divTitle.classList.add("logo");
 root.appendChild(divTitle);
 divTitle.innerHTML = `<img src="./images/image4.png" class="img-logo"></img>`;
 
-/* 3. Declaro variable de Sidebar */
+/* 2. Declaro variable de Sidebar */
 const divSidebar = document.createElement("div");
-divSidebar.classList.add("sidebar");
+divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 200px;"><a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold">Episode List</span></a><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
 root.appendChild(divSidebar);
 
-const sidebarColumn = '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;"><div class="list-group list-group-flush border-bottom scrollarea"><a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Tues</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Mon</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Wed</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Tues</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"></a><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Mon</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Wed</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Tues</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Mon</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Wed</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Tues</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a><a href="#" class="list-group-item list-group-item-action py-3 lh-tight"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1">List group item heading</strong><small class="text-muted">Mon</small></div><div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div></a></div></div>'
-divSidebar.innerHTML = (sidebarColumn);
-
-/* Declaro variable del botón del sidebar */
+const url = `https://rickandmortyapi.com/api/episode`;
 
 
-/* Función para mostrar lista en sidebar */
-function renderAllEpisodiosSidebar(formatJsonAll) {
-    //formatJsonAll.results.forEach((episodio, index) => {
-    
-    //};    
+/* Función 
+function renderContent (episodio) {
+
 };
+*/ 
+
+/* 3. Extraer datos de la API y con evento click */
+fetch(url)
+.then(response => response.json())
+.then(json => {
+    const count = json.info.count;
+    const list = document.querySelector('.list-content');
+    divSidebar.appendChild(list);
+    for(let i=0;i<count;i++){
+        const elementDivContentList = document.createElement('div');
+        list.appendChild(elementDivContentList);
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action active py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
+        //elementDivContentList.onclick = () => contentEpisode(i+1);
+    };
+}).catch(error => console.warn(error));
+
 
 /* 2. Función para hacer request de episodios a la API (visualizar varios en el sidebar) */
-const getAllEpisodios = async () => {
+/*
+const getAllEpisodios = async (episode) => {
     try{
-        const url = `https://rickandmortyapi.com/api/episode/`;
+        const url = `https://rickandmortyapi.com/api/episode/${episode}`;
         const formatJsonAll = await fetch(url);
         const formatObjectAll = await formatJsonAll.json();
         renderAllEpisodiosSidebar(formatObjectAll);
@@ -34,3 +47,4 @@ const getAllEpisodios = async () => {
         console.log(error);
     };
 };
+*/
