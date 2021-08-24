@@ -74,7 +74,7 @@ fetch(url)
     for(let i=0;i<count;i++){
         const elementDivContentList = document.createElement('div');
         list.appendChild(elementDivContentList);
-        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action active py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action py-3 lh-tight" aria-current="true"><div class="d-flex w-100 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
         elementDivContentList.onclick = () => contentEpisode(i+1);
     };
 }).catch(error => console.warn(error));
