@@ -14,10 +14,9 @@ root.appendChild(divSidebar);
 
 /* 8. Creamos botón para ver más episodios */
 const buttonAllEpisodes = document.createElement("div");
-buttonAllEpisodes.classList.add("button");
+buttonAllEpisodes.classList.add("button-more");
 buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;
 divSidebar.appendChild(buttonAllEpisodes);
-
 
 const url = `https://rickandmortyapi.com/api/episode`;
 
@@ -85,7 +84,6 @@ fetch(url)
         elementDivContentList.onclick = () => contentEpisode(i+1);
     };
 }).catch(error => console.warn(error));
-
 
 /* 2. Función para hacer request de episodios a la API (visualizar varios en el sidebar) */
 /*
