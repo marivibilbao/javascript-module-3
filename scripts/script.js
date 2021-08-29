@@ -152,6 +152,29 @@ const contentEpisode = async (episodio) => {
     };
 };
 
+/* Función para sidebar (más imágenes) */
+function morePages (urlNextPage){
+    fetch(urlNextPage)
+    .then(response => response.json())
+    .then(json => {
+        const count = json.results;
+        const div = document.querySelector(".content-sidebar");
+        const contentSidebar = document.querySelector(".list-content");
+        div.appendChild(contentSidebar);
+        count.forEach((result,id) => {
+            const divElement = document.createElement("div");
+            contentSidebar.appendChild(divElement);
+            divElement.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action list-group-item-light py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${result.id}</strong></div></a>`;
+            divElement.onclick = () => contentEpisode(result.id);
+        });
+        const button = document.createElement("button");
+        button.classList.add("button-more");
+        button.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;  
+        contentSidebar.appendChild(button);
+        button.onclick = (event) =>  {event.preventDefault();  morePages(json.info.next); button.className = "d-none"};
+    });
+};
+
 /* 3. Extraer datos de la API con evento click y botón */
 fetch(url)
 .then(response => response.json())
@@ -159,16 +182,23 @@ fetch(url)
     const count = json.results;
     const list = document.querySelector('.list-content');
     divSidebar.appendChild(list);
-    count.forEach((count , i) => {
+    count.forEach((result , id) => {
         const elementDivContentList = document.createElement('div');
+        elementDivContentList.className = ("list-episode");
         list.appendChild(elementDivContentList);
-        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action list-group-item-light py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
-        elementDivContentList.onclick = () => contentEpisode(i+1);
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action list-group-item-light py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${result.id}</strong></div></a>`;
+        elementDivContentList.onclick = () => contentEpisode(result.id);
     });
+    //Creamos botón para ver más episodios
     const buttonAllEpisodes = document.createElement("div");
     buttonAllEpisodes.classList.add("button-more");
     buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;  
     list.appendChild(buttonAllEpisodes);
+    buttonAllEpisodes.onclick = (event) => {
+        event.preventDefault();
+        morePages(json.info.next); 
+        buttonAllEpisodes.className = "d-none";
+    };
 }).catch(error => console.warn(error));
 
 /* 3. Extraer datos de la API y con evento click 
