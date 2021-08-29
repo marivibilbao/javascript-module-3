@@ -169,7 +169,7 @@ function morePages (urlNextPage){
         });
         const button = document.createElement("button");
         button.classList.add("button-more");
-        button.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;  
+        button.innerHTML = `<button type="button" class="btn btn-success">More Episodes</button>`;  
         contentSidebar.appendChild(button);
         button.onclick = (event) =>  {event.preventDefault();  morePages(json.info.next); button.className = "d-none"};
     });
@@ -192,7 +192,7 @@ fetch(url)
     //Creamos botón para ver más episodios
     const buttonAllEpisodes = document.createElement("div");
     buttonAllEpisodes.classList.add("button-more");
-    buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;  
+    buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Episodes</button>`;  
     list.appendChild(buttonAllEpisodes);
     buttonAllEpisodes.onclick = (event) => {
         event.preventDefault();
