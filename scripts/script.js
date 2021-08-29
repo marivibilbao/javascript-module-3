@@ -9,14 +9,8 @@ root.className = 'container d-flex';
 /* 2. Declaro variable de Sidebar */
 const divSidebar = document.createElement("div");
 divSidebar.className = "content-sidebar";
-divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white overflow-auto" style="height:2000px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
+divSidebar.innerHTML ='<div class="list-content d-flex flex-column align-items-stretch flex-shrink-0 bg-white overflow-auto" style="height:1500px;"><div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom"><span class="fs-5 fw-semibold"><img src="./images/image4.png" class="img-logo"></img></span></div><div class="list-group list-group-flush border-bottom scrollarea"></div></div>';
 root.appendChild(divSidebar);
-
-/* 8. Creamos botón para ver más episodios */
-const buttonAllEpisodes = document.createElement("div");
-buttonAllEpisodes.classList.add("button-more");
-buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;
-divSidebar.appendChild(buttonAllEpisodes);
 
 const url = `https://rickandmortyapi.com/api/episode`;
 
@@ -31,7 +25,7 @@ function clearContent() {
     contenido.innerHTML = "";
 };
 
-/* 10. Función para la localización */
+/* 9. Función para la localización */
 function renderLocation (location) {
     clearContent();
     fetch(location)
@@ -63,7 +57,7 @@ function renderLocation (location) {
     });
 };
 
-/* 9. Función para los personajes */
+/* 8. Función para los personajes */
 function contentCharacter (character){
     clearContent(); 
 
@@ -158,7 +152,26 @@ const contentEpisode = async (episodio) => {
     };
 };
 
-/* 3. Extraer datos de la API y con evento click */
+/* 3. Extraer datos de la API con evento click y botón */
+fetch(url)
+.then(response => response.json())
+.then(json => {
+    const count = json.results;
+    const list = document.querySelector('.list-content');
+    divSidebar.appendChild(list);
+    count.forEach((count , i) => {
+        const elementDivContentList = document.createElement('div');
+        list.appendChild(elementDivContentList);
+        elementDivContentList.innerHTML = `<a href="#" class="m-1 list-group-item list-group-item-action list-group-item-light py-3 lh-tight" aria-current="true"><div class="d-flex w-0 align-items-center justify-content-between"><strong class="mb-1 episodeList">Episode-${i+1}</strong></div></a>`;
+        elementDivContentList.onclick = () => contentEpisode(i+1);
+    });
+    const buttonAllEpisodes = document.createElement("div");
+    buttonAllEpisodes.classList.add("button-more");
+    buttonAllEpisodes.innerHTML = `<button type="button" class="btn btn-success">More Epoisodes</button>`;  
+    list.appendChild(buttonAllEpisodes);
+}).catch(error => console.warn(error));
+
+/* 3. Extraer datos de la API y con evento click 
 fetch(url)
 .then(response => response.json())
 .then(json => {
@@ -172,6 +185,7 @@ fetch(url)
         elementDivContentList.onclick = () => contentEpisode(i+1);
     };
 }).catch(error => console.warn(error));
+*/
 
 /* 2. Función para hacer request de episodios a la API (visualizar varios en el sidebar) */
 /*
