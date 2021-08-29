@@ -31,6 +31,94 @@ function clearContent() {
     contenido.innerHTML = "";
 };
 
+/* 10. Función para la localización */
+function renderLocation (location) {
+    clearContent();
+    fetch(location)
+      .then((request) => request.json())
+      .then((response) => {
+        clearContent();
+        const contenido = document.querySelector('.content-card');
+        const h1 = document.createElement('h1');
+        const h3 = document.createElement('h3');
+        const divCard = document.createElement('div');
+        divCard.className = 'characters-episodes d-flex row';
+        contenido.appendChild(h1);
+        contenido.appendChild(h3);
+        contenido.appendChild(divCard);
+        h1.innerText = response.name;
+        h3.innerText = `${response.type} - ${response.dimension}`;
+        response.residents.forEach(resident => {
+            fetch(resident)
+            .then(response => response.json())
+            .then(json => {
+                const personajesEpisodios = document.querySelector(".characters-episodes")
+                const divCardEpisode = document.createElement('div')
+                divCardEpisode.className = 'col-3'
+                personajesEpisodios.appendChild(divCardEpisode)
+                divCardEpisode.innerHTML = `<div class="card m-3" style="width: 13rem; cursor:pointer"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+                divCardEpisode.onclick = () => contentCharacter(json);
+            });
+        });
+    });
+};
+
+/* 9. Función para los personajes */
+function contentCharacter (character){
+    clearContent(); 
+
+    //Declaramos los elementos para poder ir generando el contenido del HTML
+    const content = document.querySelector('.content-card');
+    const divElementCharacterTitle = document.createElement('div');
+    divElementCharacterTitle.className = "contentCharacter d-flex col m-3";
+
+    const divElementCharacter = document.createElement('div');
+    divElementCharacter.className = "contentEpisodesCharacter d-flex row";
+    const hrline = document.createElement("hr");
+
+    divElementLetter = document.createElement('div');
+    divElementLetter.className = "contentCharacterLetter d-flex row m-3 p-3";
+    content.appendChild(divElementCharacterTitle);
+    content.appendChild(hrline);
+    content.appendChild(divElementCharacter);
+
+    const image = document.createElement('img');
+    image.className = "image-character";
+    const h1 = document.createElement('h1');
+    const h4 = document.createElement('h4');
+
+    //Creamos botón para la localización
+    const button = document.createElement("button");
+    button.className = ("btn btn-success");
+    button.innerHTML = "Location";
+    button.onclick = () => {
+        renderLocation(character.location.url);
+    };
+
+    divElementCharacterTitle.appendChild(image);
+    divElementCharacterTitle.appendChild(divElementLetter);
+    divElementLetter.appendChild(h1);
+    divElementLetter.appendChild(h4);
+    divElementLetter.appendChild(button);
+
+    //Información que se extrae de la API
+    image.src = `${character.image}`;
+    h1.innerText = character.name;
+    h4.innerHTML = `${character.species} | ${character.status} | ${character.gender} | ${character.origin.name}`;
+
+    character.episode.forEach(episode => {
+        fetch(episode)
+        .then(request => request.json())
+        .then(response => {
+            const characterEpisodes = document.querySelector(".contentEpisodesCharacter");
+            const divCardEpisodeCharacter = document.createElement('div');
+            divCardEpisodeCharacter.className = 'col-3';
+            characterEpisodes.appendChild(divCardEpisodeCharacter);
+            divCardEpisodeCharacter.innerHTML = `<div class="card m-3" style="width: 14rem; cursor:pointer; border:none;"><div class="card-body"><h5 class="card-title"><b>Episode - ${response.id}</b></h5><h5 class="card-title">${response.episode}</h5></div></div>`;
+        });
+    });
+};
+
 /* 5. Función para las tarjetas */
 function renderContent (episodio) {
     clearContent();
@@ -48,12 +136,12 @@ function renderContent (episodio) {
         fetch(character)
         .then(response => response.json())
         .then(json => {
-            console.log(json)
             const personajesEpisodios = document.querySelector(".characters-episodes")
             const divCardEpisode = document.createElement('div')
             divCardEpisode.className = 'col-3'
             personajesEpisodios.appendChild(divCardEpisode)
             divCardEpisode.innerHTML = `<div class="card m-3" style="width: 13rem; cursor:pointer"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+            divCardEpisode.onclick = () => contentCharacter(json);
         });
     });
 };
