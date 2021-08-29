@@ -50,10 +50,10 @@ function renderContent (episodio) {
         .then(json => {
             console.log(json)
             const personajesEpisodios = document.querySelector(".characters-episodes")
-            const div5 = document.createElement('div')
-            div5.className = 'col-3'
-            personajesEpisodios.appendChild(div5)
-            div5.innerHTML = `<div class="card m-3" style="width: 13rem;"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+            const divCardEpisode = document.createElement('div')
+            divCardEpisode.className = 'col-3'
+            personajesEpisodios.appendChild(divCardEpisode)
+            divCardEpisode.innerHTML = `<div class="card m-3" style="width: 13rem; cursor:pointer"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
         });
     });
 };
