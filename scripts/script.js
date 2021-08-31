@@ -136,7 +136,7 @@ function renderContent (episodio) {
             const divCardEpisode = document.createElement('div')
             divCardEpisode.className = 'col-3'
             personajesEpisodios.appendChild(divCardEpisode)
-            divCardEpisode.innerHTML = `<div class="card m-3" style="width: 13rem; cursor:pointer"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
+            divCardEpisode.innerHTML = `<div class="card m-3" style="width: 13rem; background-color: #98F9D2; cursor:pointer"><img src="${json.image}" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">${json.name}</h5><h5 class="card-title">${json.species} | ${json.status}</h5></div></div>`;
             divCardEpisode.onclick = () => contentCharacter(json);
         });
     });
