@@ -109,6 +109,8 @@ function contentCharacter (character){
             divCardEpisodeCharacter.className = 'col-3';
             characterEpisodes.appendChild(divCardEpisodeCharacter);
             divCardEpisodeCharacter.innerHTML = `<div class="card m-3" style="width: 14rem; cursor:pointer; border:none;"><div class="card-body"><h5 class="card-title"><b>Episode - ${response.id}</b></h5><h5 class="card-title">${response.episode}</h5></div></div>`;
+            //Agrego para que al darle click al episodio del personaje vaya a la lista de ese episodio.
+            divCardEpisodeCharacter.onclick = () =>contentEpisode(response.id);
         });
     });
 };
